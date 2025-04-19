@@ -9,7 +9,9 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 // 3. if you using "module" type (check the documentation and package.json what is module type)
       // then if you want to call a function from a file you need to add the extension also like= .js
-import connectDB from './connectDB.js';
+import connectDB from './config/connectDB.js';
+// 7. Connect the user roouter
+import userrouter from './routers/user_router.js';
 
 const app=express()
 app.use(cors({
@@ -41,10 +43,20 @@ app.get("/",(req,res)=>{
   })
 })
 
-connectDB();
+// 7. Now connect the user router
+  // Here the userrouter function will be call with attached path
+app.use('/api/user',userrouter)
 
-// 1. For running the server
-app.listen(PORT,()=>
-{
-  console.log("Server is running in localhost:",PORT)
+// 3. To check whether DB is connected
+// connectDB();
+
+// 3. PORT inside DB to make sure server run only if DB connected
+connectDB().then(()=>{
+
+  // 1. For running the server
+  app.listen(PORT,()=>
+  {
+    console.log("Server is running in localhost:",PORT)
+  })
+
 })
