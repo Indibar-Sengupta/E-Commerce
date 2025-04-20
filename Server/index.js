@@ -16,14 +16,14 @@ import userrouter from './routers/user_router.js';
 const app=express()
 app.use(cors({
   // 1. It is able to access cookies from the client side that's why credential : true
-  credential : true,
+  credentials : true,
   // 1. Here we can passs aarray as well as a strings
         // But here we are connect it using .env file
   origin: process.env.FRONTEND_URL
 }))
 // 1. All request come in form of json
 app.use(express.json())
-
+// 12. Add the cookie parser function
 app.use(cookieParser())
 // 1. It work as logger when any api call in the terminal it will be display
 app.use(morgan())
@@ -45,6 +45,7 @@ app.get("/",(req,res)=>{
 
 // 7. Now connect the user router
   // Here the userrouter function will be call with attached path
+    // Now After this we will test in the postman
 app.use('/api/user',userrouter)
 
 // 3. To check whether DB is connected
