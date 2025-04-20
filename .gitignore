@@ -1,2 +1,8 @@
 node_modules
 .env
+salt.txt
+EmailTemplateJSorJSX.txt
+UseOfQuestionMark.txt
+exportimport.txt
+AccessAndRefreshToken.txt
+UseOfmiddlewareauthjs.txt
